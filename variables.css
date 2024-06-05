@@ -1,0 +1,16 @@
+:root {
+  --text-color: #072635;
+  --text-light-color: #707070;
+  --white: #ffffff;
+  --body-bg-color: #F6F7F8;
+  --active-color: #01F0D0;
+  --active-light-color: #D8FCF7;
+  --bg-light-purple: #F4F0FE;
+  --bg-light-blue-color: #E0F3FA;
+  --bg-light-red-color: #FFE6E9;
+  --bg-light-pink-color: #FFE6F1;
+  --light-gray-color: #EDEDED;
+  --medium-gray-color: #CBC8D4;
+  --indicator-pink-color: #E66FD2;
+  --indicator-purple-color: #8C6FE6;
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Patient data management interface providing access to patient history, diagnosis, and contact information">
+    <title>Patient Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="section-logo">
+            <a href="/">
+                <img src="./assets/tech-care-logo.png" alt="Tech Care logo"/>
+            </a>
+        </nav>
+        <nav class="section-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-item-link" aria-label="Overview page">
+                        <img class="icon-home" src="./assets/icon-home.svg" alt="Home icon"/>
+                        <span class="title">Overview</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-item-link active" aria-label="Patients page">
+                        <img class="icon-home" src="./assets/icon-patient.svg" alt="Patient icon"/>
+                        <span class="title">Patients</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-item-link" aria-label="Schedule page">
+                        <img class="icon-home" src="./assets/icon-calender.svg" alt="Calendar icon"/>
+                        <span class="title">Schedule</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-item-link" aria-label="Messages page">
+                        <img class="icon-home" src="./assets/icon-chat.svg" alt="Chat icon"/>
+                        <span class="title">Message</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-item-link" aria-label="Transactions page">
+                        <img class="icon-home" src="./assets/icon-credit-card.svg" alt="Transaction icon"/>
+                        <span class="title">Transactions</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="section-current-user">
+            <div class="user-image">
+                <img src="./assets/user-image.png" alt="Dr. Jose Simmons"/>
+                <div class="user-name-wrap">
+                    <div class="name">Dr. Jose Simmons</div>
+                    <div class="designation">General Practitioner</div>
+                </div>
+            </div>
+            <div class="icons-wrap">
+                <img class="icon-settings" src="./assets/icon-settings.svg" alt="Settings icon"/>
+                <img class="icon-more" src="./assets/icon-more.svg" alt="More options icon"/>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section-left" role="region" aria-label="Patient list">
+            <div class="patient-list-header">
+                <div class="heading">Patients</div>
+                <img src="./assets/icon-search.svg" class="icon-search" alt="Search icon"/>
+            </div>
+            <ul class="patient-list-content" id="patientList">
+            </ul>
+        </section>
+        <section class="section-middle" role="region" aria-label="Patient diagnostic history">
+            <div class="section-top">
+                <div class="heading">Diagnosis History</div>
+                <div class="chart-wrap">
+                    <div class="content-left">
+                        <div class="title-wrap">
+                            <div class="title">Blood Pressure</div>
+                            <div class="desc">
+                                <span>Last 6 months</span>
+                                <img src="./assets/icon-caret-down.svg" alt="Expand dropdown"/>
+                            </div>
+                        </div>
+                        <div class="chart" role="img" aria-label="Blood pressure chart">
+                            <canvas id="bpChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="content-right">
+                        <div class="details">
+                            <div class="title">Systolic</div>
+                            <div class="value" id="patient-systolic-value">0</div>
+                            <div class="level">
+                                <img src="./assets/icon-arrow-up.svg" alt="Higher level"/>
+                                <span class="text" id="patient-systolic-level">...</span>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <div class="title">Diastolic</div>
+                            <div class="value" id="patient-diastolic-value">0</div>
+                            <div class="level">
+                                <img src="./assets/icon-arrow-down.svg" alt="Lower level"/>
+                                <span class="text" id="patient-diastolic-level">...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cards-wrap">
+                    <div class="card">
+                        <img src="./assets/respiratory-rate.svg" alt="Respiratory rate"/>
+                        <div class="title">Respiratory Rate</div>
+                        <div class="value" id="patient-respiratory-rate-value">00 bpm</div>
+                        <div class="level">
+                            <span class="text" id="patient-respiratory-rate-level">...</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/temperature.svg" alt="Temperature"/>
+                        <div class="title">Temperature</div>
+                        <div class="value" id="patient-temperature-value">00.0 °F</div>
+                        <div class="level">
+                            <span class="text" id="patient-temperature-level">...</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/heart-bpm.svg" alt="Heart rate"/>
+                        <div class="title">Heart Rate</div>
+                        <div class="value" id="patient-heart-rate-value">00 bpm</div>
+                        <div class="level">
+                            <img src="./assets/icon-arrow-down.svg" alt="Lower level"/>
+                            <span class="text" id="patient-heart-rate-level">...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-bottom">
+                <div class="heading">Diagnostic List</div>
+                <div class="headings-list">
+                    <div>Problem/Diagnosis</div>
+                    <div>Description</div>
+                    <div>Status</div>
+                </div>
+                <ul class="content-list" id="content-list">
+                    <li class="content-list-item">
+                        <div>Loading...</div>
+                        <div>Loading...</div>
+                        <div>Loading...</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="section-right" role="region" aria-label="Patient personal information">
+            <div class="patient-details">
+                <div class="profile">
+                    <div class="profile-img-wrap">
+                        <img src="https://t4.ftcdn.net/jpg/02/17/34/67/360_F_217346796_TSg5VcYjsFxZtIDK6Qdctg3yqAapG7Xa.jpg" alt="Jessica Taylor" class="profile-img" id="profile-img"/>
+                    </div>
+                    <div class="heading" id="patient-name">Loading ...</div>
+                </div>
+                <div class="personal-info">
+                    <div class="info">
+                        <img src="./assets/icon-birth.svg" alt="Date of birth icon"/>
+                        <div class="text-wrap">
+                            <div class="text">Date Of Birth</div>
+                            <div class="sub-text" id="patient-dob">mmmm dd , yyyy</div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <img src="./assets/icon-female.svg" alt="Female icon"/>
+                        <div class="text-wrap">
+                            <div class="text">Gender</div>
+                            <div class="sub-text" id="patient-gender"> - </div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <img src="./assets/icon-phone.svg" alt="Phone icon"/>
+                        <div class="text-wrap">
+                            <div class="text">Contact Info.</div>
+                            <div class="sub-text" id="patient-contact">(xxx) xxx-xxxx</div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <img src="./assets/icon-phone.svg" alt="Phone icon"/>
+                        <div class="text-wrap">
+                            <div class="text">Emergency Contacts</div>
+                            <div class="sub-text" id="patient-emergency-contact">(xxx) xxx-xxxx</div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <img src="./assets/icon-insurance.svg" alt="Insurance icon"/>
+                        <div class="text-wrap">
+                            <div class="text">Insurance Provider</div>
+                            <div class="sub-text" id="patient-insurance-provider">Insurance Provider</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-info">
+                    <button class="button" aria-label="Show all information about Jessica Taylor">Show All Information</button>
+                </div>
+            </div>
+            <div class="lab-results">
+                <div class="heading">Lab Results</div>
+                <ul class="results-list" id="lab-results-list">
+                </ul>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
